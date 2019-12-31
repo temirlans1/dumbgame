@@ -1,17 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <StartPage v-if="currentLevel==0"/>
+    <Level1 v-if="currentLevel==1"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import StartPage from './components/StartPage'
+import Level1 from './components/Level1'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    StartPage,
+    Level1
+  },
+  data() {
+    return {
+      level: 0
+    }
+  },
+  methods: {
+    increaseLevel() {
+      this.level ++
+    }
+  },
+  computed: {
+    currentLevel() {
+      return this.level
+    }
   }
 }
 </script>
@@ -22,7 +39,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  height: 100%;
 }
 </style>
