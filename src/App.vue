@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      level: 7
+      level: 0
     }
   },
   methods: {
