@@ -1,5 +1,5 @@
 <template>
-    <div id="start-anim" class="centered">
+    <div id="start-anim" class="centered noselect   ">
         <div id="word-welcome">Welcome to my</div>
         <div id="letter-u">u</div>
         <div id="letter-m">m</div>
@@ -100,10 +100,10 @@ body {
 #letter-d {
     cursor: pointer;
     position: fixed; /* or absolute */
-    top: 50%;
-    left: 50%;
-    margin-top: -100px;
-    margin-left: -91px;
+    top: 40%;
+    right: 50%;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #ffa500;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -123,9 +123,10 @@ body {
 #letter-b {
     cursor: pointer;
     position: fixed; /* or absolute */
-    top: 50%;
+    top: 40%;
     left: 50%;
-    margin-top: -100px;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #ffa500;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -145,10 +146,11 @@ body {
 #letter-u {
     cursor: pointer;
     position: fixed; /* or absolute */
-    top: 50%;
-    left: 50%;
-    margin-top: -100px;
-    margin-left: -61px;
+    top: 40%;
+    right: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
     background-color: #ffa500;
     display: inline-block;
     transition: all 1s ease-in-out;
@@ -158,10 +160,12 @@ body {
 }
 #letter-m {
     cursor: pointer;
-    position: fixed; /* or absolute */
-    top: 50%;
+    position: absolute; /* or absolute */
+    top: 40%;
     left: 50%;
-    margin-top: -100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 2px;
     background-color: #ffa500;
     display: inline-block;
     transition: all 1s ease-in-out;
@@ -171,12 +175,14 @@ body {
 }
 #word-game {
     cursor: pointer;
+    text-align: center;
     position: fixed; /* or absolute */
-    top: 50%;
-    left: 50%;
+    top: 40%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 110px;
     font-size: 50px;
-    margin-top: 10px;
-    margin-left: -50px;
     transition:color 1s ease;
 }
 .w-g-appear {
@@ -189,12 +195,13 @@ body {
 }
 #word-welcome {
     cursor: pointer;
+    text-align: center;
     position: fixed; /* or absolute */
-    top: 50%;
-    left: 50%;
-    font-size: 100px;
-    margin-top: -250px;
-    margin-left: -350px;
+    top: 40%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -150px;
     transition:color 1s ease;
 }
 .w-w-appear {
@@ -205,6 +212,16 @@ body {
     -ms-transition-delay:all 1s ease;
     -o-transition-delay:all 1s ease;
 }
+@media screen and (min-width: 320px) {
+  #word-welcome {
+    font-size: 60px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  #word-welcome {
+    font-size: 100px;
+  }
+} 
 #word-start {
     cursor: pointer;
     position: fixed; /* or absolute */
@@ -223,10 +240,10 @@ body {
     -o-transition: transform 2s ease-in-out; /** Opera **/
 }
 .w-s-move {
-    transform: translate(+1420px,0);
-    -webkit-transform: translate(+1420px,0); /** Safari & Chrome **/
-    -o-transform: translate(+1420px,0); /** Opera **/
-    -moz-transform: translate(+1420px,0); /** Firefox **/
+    transform: translate(+1410px,0);
+    -webkit-transform: translate(+1410px,0); /** Safari & Chrome **/
+    -o-transform: translate(+1410px,0); /** Opera **/
+    -moz-transform: translate(+1410px,0); /** Firefox **/
 }
 #word-start:hover {
     background-color: #ffa500;
