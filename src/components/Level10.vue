@@ -15,7 +15,8 @@
             </div>
             <input id="ans" type="text" placeholder="Answer...">
             <div class="submit-btn"
-            @click="checkAns()">Submit</div>
+            @click="checkAns()"
+            v-show="!correct">Submit</div>
         </div>
         
         <div class="success-checkmark">
@@ -34,18 +35,21 @@ export default {
     name: 'Level10',
     data() {
         return {
+            correct: false
         }
     },
     methods: {
         nextLvl() {
             document.getElementById("lvl-passed").classList.add("check-icon");
             document.getElementById("level-message").remove();
+            this.$parent.stopWatch();
             setTimeout(this.$parent.increaseLevel, 2000);
         },
         checkAns() {
             var ans = document.getElementById("ans");
             if(ans.value == "create"){
                 ans.style.borderColor = "rgb(0, 95, 0)";
+                this.correct = true;
                 setTimeout(this.nextLvl, 1000);
             }
             else {

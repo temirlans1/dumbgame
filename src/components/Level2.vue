@@ -2,23 +2,25 @@
     <div id="level-header" class="centered">
         <div id="word-level">level</div>
         <div id="number-level">{{level}}</div>
+        <div class="brk-btn"
+        @click="nextLvl">press me</div>
         <div id="lvl-border"></div>
-        <div id="level-message">
+        <div id="level-message" @click="selectText">
             <div id="lvl2-message" style="animation-delay: 2s;">
-                This level is harder         
+                The answer will appear
             </div>
             <div id="lvl2-message" style="animation-delay: 3s;">
-                The answer is here
+                If you look through 
             </div>
             <div id="lvl2-message" style="animation-delay: 4s;">
-                But you can't see it
+                the blue glasses
             </div>
-            <div id="lvl2-message" style="animation-delay: 30s;">
+            <div id="lvl2-message"
+            v-show="canShow == true">
                 (Hint: Select all)
             </div>
         </div>
-        <div class="brk-btn"
-        @click="nextLvl">here</div>
+        
         <div class="success-checkmark">
             <div id="lvl-passed">
                 <span class="icon-line line-tip"></span>
@@ -35,17 +37,34 @@ export default {
     name: 'Level2',
     data() {
         return {
+            canShow: false,
+            it: 0
         }
     },
     methods: {
         nextLvl() {
             document.getElementById("lvl-passed").classList.add("check-icon");
             document.getElementById("level-message").remove();
+            this.$parent.stopWatch();
             setTimeout(this.$parent.increaseLevel, 2000);
+        },
+        selectText() {
+            document.getElementById("level-message").style.userSelect = "all";
+        },
+        fcanShow() {
+            this.it ++;
+            if(this.it == 1){
+                setTimeout(this.fcanShow, 15000);
+            }
+            else {
+                this.canShow = true;
+            }
+            
         }
     },
     computed: {
         level() {
+            this.fcanShow()
             return this.$parent.currentLevel
         }
     }
@@ -102,13 +121,25 @@ body {
     margin-top: 50px; 
   }
 }
+#lvl2-message-blue {
+    margin-top: 100px;
+    color:#1b1b1b;
+    -webkit-animation: lvl2-m-b-fadeOut 3.0s forwards;
+    animation: lvl2-m-b-fadeOut 3.0s forwards;
+}
+@keyframes lvl2-m-b-fadeOut {
+  100% {
+    color: white;
+    margin-top: 50px; 
+  }
+}
 .brk-btn {
     cursor: pointer;
-    position: fixed; /* or absolute */
-    top: 90%;
-    right: 45%;
+    position: absolute; /* or absolute */
+    right: 10vw;
     color: #1b1b1b;
     margin-left: auto;
     margin-right: auto;
+    display: inline-block;
 }
 </style>

@@ -38,6 +38,7 @@ export default {
             document.getElementById("level-message").remove();
             document.getElementById("big-element").remove();
             document.getElementById("lvl3-pass").remove();
+            this.$parent.stopWatch();
             setTimeout(this.$parent.increaseLevel, 2000);
         }
     },

@@ -35,6 +35,7 @@ export default {
             document.getElementById("lvl-passed").classList.add("check-icon");
             document.getElementById("level-message").remove();
             document.getElementById("lvl5-pass").remove();
+            this.$parent.stopWatch();
             setTimeout(this.$parent.increaseLevel, 2000);
         },
         pressBtn() {
@@ -55,7 +56,7 @@ export default {
               document.getElementById("word-lvl5").innerHTML="So, just do it";
             }
             if(this.btnPressed == 28) {
-              document.getElementById("word-lvl5").innerHTML="Stop and wait";
+              document.getElementById("word-lvl5").innerHTML="But now, stop and wait";
             }
             if(this.btnPressed == 29) {
               document.getElementById("word-lvl5").innerHTML="Do it";

@@ -37,6 +37,7 @@ export default {
         nextLvl() {
             document.getElementById("lvl-passed").classList.add("check-icon");
             document.getElementById("level-message").remove();
+            this.$parent.stopWatch();
             setTimeout(this.$parent.increaseLevel, 2000);
         }
     },
@@ -51,10 +52,22 @@ export default {
 <style>
 
 @media screen and (min-width: 320px) {
+    #catch-me {
+        -webkit-animation: c-m-anim 1.0s infinite;
+        animation: c-m-anim 1.0s infinite;
+    }
 }
 @media screen and (min-width: 640px) {
+    #catch-me {
+        -webkit-animation: c-m-anim 1.5s infinite;
+        animation: c-m-anim 1.5s infinite;
+    }
 }
 @media screen and (min-width: 1000px) {
+    #catch-me {
+        -webkit-animation: c-m-anim 2.0s infinite;
+        animation: c-m-anim 2.0s infinite;
+    }
 } 
 #catch-me  {
     position: absolute;
@@ -66,8 +79,6 @@ export default {
     padding-right: 13px;
     left: -50vw;
     display: inline-block;
-    -webkit-animation: c-m-anim 1.0s infinite;
-    animation: c-m-anim 1.0s infinite;
     animation-delay: 5s;
     animation-direction: alternate;
     animation-timing-function: linear;

@@ -5,7 +5,7 @@
         <div id="lvl-border"></div>
         <div id="level-message">
             <div id="lvl2-message" style="animation-delay: 2s;">
-                When the time comes
+                When the moment comes
             </div>
             <div id="lvl2-message" style="animation-delay: 2s;">
                 do not miss the chance
@@ -38,6 +38,7 @@ export default {
         nextLvl() {
             document.getElementById("lvl-passed").classList.add("check-icon");
             document.getElementById("level-message").remove();
+            this.$parent.stopWatch();
             setTimeout(this.$parent.increaseLevel, 2000);
         },
         hideChance() {
@@ -46,7 +47,7 @@ export default {
         },
         showChance() {
             this.hidden = false;
-            setTimeout(this.hideChance, 200);
+            setTimeout(this.hideChance, 500);
         }
     },
     computed: {

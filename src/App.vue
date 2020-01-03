@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <Stopwatch ref="watch" v-show="currentLevel!=0 && currentLevel!=11"/>
+    <EndGame v-if="currentLevel==11"/>
     <StartPage v-if="currentLevel==0"/>
     <Level1 v-if="currentLevel==1"/>
     <Level2 v-if="currentLevel==2"/>
@@ -15,7 +17,9 @@
 </template>
 
 <script>
+import Stopwatch from './components/Stopwatch'
 import StartPage from './components/StartPage'
+import EndGame from './components/EndGame'
 import Level1 from './components/Level1'
 import Level2 from './components/Level2'
 import Level3 from './components/Level3'
@@ -30,7 +34,9 @@ import Level10 from './components/Level10'
 export default {
   name: 'app',
   components: {
+    Stopwatch,
     StartPage,
+    EndGame,
     Level1,
     Level2,
     Level3,
@@ -50,6 +56,10 @@ export default {
   methods: {
     increaseLevel() {
       this.level ++
+      if(this.level != 11){
+        this.startWatch()
+      }
+      
     },
     goto1() {
       this.level = 1
@@ -80,6 +90,15 @@ export default {
     },
     goto10() {
       this.level = 10
+    },
+    startWatch() {
+      setTimeout(this.$refs.watch.start, 2000)
+    },
+    stopWatch() {
+      this.$refs.watch.stop();
+    },
+    finishTime() {
+      return this.$refs.watch.getTime();
     }
   },
   computed: {

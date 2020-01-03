@@ -38,22 +38,26 @@ export default {
         nextLvl() {
             document.getElementById("lvl-passed").classList.add("check-icon");
             document.getElementById("level-message").remove();
+            this.$parent.stopWatch();
             setTimeout(this.$parent.increaseLevel, 2000);
         },
         startRandom() {
             if(document.getElementById("roll").innerHTML == "Nice"){
                 this.nextLvl();
             }
-            var n = Math.floor(Math.random() * 100) + 1;
-            if(n % 5 == 0){
-                n = 69;
+            else {
+                var n = Math.floor(Math.random() * 100) + 1;
+                if(n % 5 == 0){
+                    n = 69;
+                }
+                if(!this.rollPressed) {
+                    document.getElementById("ld1").classList.remove("ld-green");
+                    document.getElementById("ld1").classList.remove("ld-red");
+                    this.rollPressed = true;
+                    this.reachNumber(0, n);
+                }
             }
-            if(!this.rollPressed) {
-                document.getElementById("ld1").classList.remove("ld-green");
-                document.getElementById("ld1").classList.remove("ld-red");
-                this.rollPressed = true;
-                this.reachNumber(0, n);
-            }
+            
         },
         reachNumber(i, n) {
             var ld = document.getElementById("ld1");
