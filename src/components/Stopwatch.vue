@@ -7,25 +7,32 @@ export default {
     name: 'Stopwatch',
     data() {
         return {
-            time: '00:00:00.000',
-            timeBegan: null,
-            timeStopped: null,
-            stoppedDuration: 0,
+            milliseconds: 0,
+            seconds: 0,
+            minutes: 0,
+            hours: 0,
             started: null,
             running: false
         }
     },
     methods: {
+        run() {
+            this.milliseconds ++;
+            if(this.milliseconds == 100){
+                this.seconds ++;
+                this.milliseconds = 0;
+            }
+            if(this.seconds == 60){
+                this.minutes ++;
+                this.seconds = 0;
+            }
+            if(this.minutes == 60){
+                this.hours ++;
+                this.minutes = 0;
+            }
+        },
         start() {
-            if(this.running) return;
-            if(this.timeBegan === null) {
-                this.reset();
-                this.timeBegan = new Date();
-            }
-            if(this.timeStopped !== null) {
-                this.stoppedDuration += (new Date() - this.timeStopped);
-            }
-            this.started = setInterval(this.clockRunning, 10);	
+            this.started = setInterval(this.run, 10);	
             this.running = true;
         },
         stop() {
@@ -33,41 +40,53 @@ export default {
             this.timeStopped = new Date();
             clearInterval(this.started);
         },
-        reset() {
-            this.running = false;
-            clearInterval(this.started);
-            this.stoppedDuration = 0;
-            this.timeBegan = null;
-            this.timeStopped = null;
-            this.time = "00:00:00.000";
+        saveData() {
+            localStorage.setItem("milsec", this.milliseconds);
+            localStorage.setItem("seconds", this.seconds);
+            localStorage.setItem("minutes", this.minutes);
+            localStorage.setItem("hours", this.hours);
         },
-        clockRunning(){
-            var currentTime = new Date()
-            , timeElapsed = new Date(currentTime - this.timeBegan - this.stoppedDuration)
-            , hour = timeElapsed.getUTCHours()
-            , min = timeElapsed.getUTCMinutes()
-            , sec = timeElapsed.getUTCSeconds()
-            , ms = timeElapsed.getUTCMilliseconds();
-
-            this.time = 
-                this.zeroPrefix(hour, 2) + ":" + 
-                this.zeroPrefix(min, 2) + ":" + 
-                this.zeroPrefix(sec, 2) + "." + 
-                this.zeroPrefix(ms, 3);
-        },
-        zeroPrefix(num, digit) {
-            var zero = '';
-            for(var i = 0; i < digit; i++) {
-                zero += '0';
-            }
-            return (zero + num).slice(-digit);
+        setData() {
+            this.milliseconds = parseInt(localStorage.milsec);
+            this.seconds = parseInt(localStorage.seconds);
+            this.minutes = parseInt(localStorage.minutes);
+            this.hours = parseInt(localStorage.hours);
         },
         getTime() {
-            return this.time
+            var t='';
+            if(this.hours > 0){
+                if(this.hours < 10)t+='0';
+                t += this.hours;
+                t += 'h:';
+            }
+            if(this.hours > 0 || this.minutes > 0){
+                if(this.minutes < 10)t+='0';
+                t += this.minutes;
+                t += 'm:';
+            }
+            if(this.seconds < 10)t+='0';
+            t += this.seconds;
+            t += 's:';
+            t += this.milliseconds;
+            t += 'ms ';
+            return t;
         }
     },
     computed: {
-        
+        time(){
+            var t='';
+            if(this.hours < 10)t+='0';
+            t+=this.hours;
+            t+=":";
+            if(this.minutes < 10)t+='0';
+            t+=this.minutes;
+            t+=":";
+            if(this.seconds < 10)t+='0';
+            t+=this.seconds;
+            t+=":";
+            t+=this.milliseconds;
+            return t;
+        }
     }
 }
 

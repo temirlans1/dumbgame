@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" ref="main">
     <Stopwatch ref="watch" v-show="currentLevel!=0 && currentLevel!=11"/>
     <EndGame v-if="currentLevel==11"/>
     <StartPage v-if="currentLevel==0"/>
@@ -31,6 +31,9 @@ import Level8 from './components/Level8'
 import Level9 from './components/Level9'
 import Level10 from './components/Level10'
 
+if(!localStorage.level){
+  localStorage.setItem("level", 0)
+}
 export default {
   name: 'app',
   components: {
@@ -50,16 +53,23 @@ export default {
   },
   data() {
     return {
-      level: 0
+      level: localStorage.getItem("level"),
     }
+  },
+  mounted() {
+    if(this.level > 0 && this.level < 11){
+      this.startWatch();
+    }
+    this.$refs.watch.setData();
   },
   methods: {
     increaseLevel() {
       this.level ++
+      localStorage.setItem("level", this.level)
+      this.$refs.watch.saveData();
       if(this.level != 11){
         this.startWatch()
       }
-      
     },
     goto1() {
       this.level = 1
@@ -103,7 +113,7 @@ export default {
   },
   computed: {
     currentLevel() {
-      return this.level;
+      return this.level
     }
   }
 }

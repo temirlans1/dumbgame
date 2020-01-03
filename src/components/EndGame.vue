@@ -14,8 +14,7 @@
         </div>
         <input type="text" :placeholder='randomName'>
         <div class="submit-name-btn"
-            @click="checkAns()"
-            v-show="!correct">Yes, that's me</div>
+            @click="checkAns()">Yes, that's me</div>
         <div class="success-checkmark">
             <div id="lvl-passed">
                 <span class="icon-line line-tip"></span>

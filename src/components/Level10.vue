@@ -15,8 +15,7 @@
             </div>
             <input id="ans" type="text" placeholder="Answer...">
             <div class="submit-btn"
-            @click="checkAns()"
-            v-show="!correct">Submit</div>
+            @click="checkAns()">Submit</div>
         </div>
         
         <div class="success-checkmark">
@@ -35,7 +34,6 @@ export default {
     name: 'Level10',
     data() {
         return {
-            correct: false
         }
     },
     methods: {
@@ -49,8 +47,7 @@ export default {
             var ans = document.getElementById("ans");
             if(ans.value == "create"){
                 ans.style.borderColor = "rgb(0, 95, 0)";
-                this.correct = true;
-                setTimeout(this.nextLvl, 1000);
+                this.nextLvl();
             }
             else {
                 ans.style.borderColor = "rgb(177, 0, 0)";
