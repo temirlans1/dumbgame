@@ -15,6 +15,8 @@
         <input type="text" :placeholder='randomName'>
         <div class="submit-name-btn"
             @click="checkAns()">Yes, that's me</div>
+        <div class="submit-name-btn"
+            @click="tryAgain">I want to play again</div>
         <div class="success-checkmark">
             <div id="lvl-passed">
                 <span class="icon-line line-tip"></span>
@@ -45,6 +47,9 @@ export default {
             if(this.nameShow == 1){
                 setTimeout(this.canShow, 2000);
             }
+        },
+        tryAgain() {
+            this.$parent.startGame();
         }
     },
     computed: {

@@ -1,6 +1,8 @@
 <template>
     <div id="level-header" class="centered noselect"
     style="position: fixed;">
+    <div @click="gotoMain">
+        <i class="fas fa-home"></i></div>
         <div id="word-level">level</div>
         <div id="number-level">{{level}}</div>
         <div id="lvl-border"></div>
@@ -37,6 +39,9 @@ export default {
         setTimeout(this.$parent.startWatch, 3000);  
     },
     methods: {
+        gotoMain() {
+            this.$parent.gotoMain();
+        },
         nextLvl() {
             document.getElementById("lvl-passed").classList.add("check-icon");
             document.getElementById("level-message").remove();

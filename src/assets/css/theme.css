@@ -220,6 +220,9 @@ body {
     #level-message {
         font-size: 30px;
     }
+    .fa-home {
+        font-size: 15px;
+    }
   }
   @media screen and (min-width: 640px) {
     #level-header {
@@ -228,6 +231,9 @@ body {
     #level-message {
         font-size: 50px;
     }
+    .fa-home {
+        font-size: 35px;
+    }
   }
   @media screen and (min-width: 1000px) {
     #level-header {
@@ -235,6 +241,9 @@ body {
     }
     #level-message {
       font-size: 70px;
+    }
+    .fa-home {
+        font-size: 50px;
     }
   } 
 
@@ -247,3 +256,32 @@ body {
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Opera and Firefox */
 }
+
+
+.fa-home {
+  position: absolute;
+  color: #ffa500;
+  left: 95%;
+}
+
+@media screen and (min-width: 320px) {
+  .fa-home {
+      font-size: 25px;
+      left: 90%;
+      margin-top: 0.5vh;
+  }
+}
+@media screen and (min-width: 640px) {
+  .fa-home {
+      font-size: 45px;
+      left: 90%;
+      margin-top: 0.5vh;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .fa-home {
+      font-size: 65px;
+      right: 5%;
+      margin-top: 1vh;
+  }
+} 

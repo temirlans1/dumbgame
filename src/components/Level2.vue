@@ -1,5 +1,7 @@
 <template  onload="showButton()">
     <div id="level-header" class="centered">
+        <div @click="gotoMain">
+        <i class="fas fa-home"></i></div>
         <div id="word-level">level</div>
         <div id="number-level">{{level}}</div>
         <div id="ans-btn" class="brk-btn"></div>
@@ -45,6 +47,9 @@ export default {
         setTimeout(this.showPress, 4000);
     },
     methods: {
+        gotoMain() {
+            this.$parent.gotoMain();
+        },
         nextLvl() {
             document.getElementById("lvl-passed").classList.add("check-icon");
             document.getElementById("level-message").remove();

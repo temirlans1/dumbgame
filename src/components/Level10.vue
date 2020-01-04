@@ -1,5 +1,7 @@
 <template>
     <div id="level-header" class="centered noselect">
+        <div @click="gotoMain">
+        <i class="fas fa-home"></i></div>
         <div id="word-level">level</div>
         <div id="number-level">{{level}}</div>
         <div id="lvl-border"></div>
@@ -11,15 +13,14 @@
                 <div id="start-btn" class="vid-btn">
                     <div class="vid-play-btn"></div>
                 </div>
-                <iframe id="vid1" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                <iframe id="vid1" src="https://www.youtube.com/embed/Stk8EZ2abDA"
                     frameborder="0" 
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope;" 
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen
                     v-show="videoPressed"></iframe>
             </div>
-            <input id="ans" type="text" placeholder="Never gonna">
-            <div id="s-btn"
-            @click="checkAns()"></div>
+            <input id="ans" type="text" placeholder="It's a me">
+            <div id="s-btn"></div>
         </div>
         
         <div class="success-checkmark">
@@ -45,6 +46,9 @@ export default {
         setTimeout(this.startLvl, 2000);
     },
     methods: {
+        gotoMain() {
+            this.$parent.gotoMain();
+        },
         startLvl() {
             this.$parent.startWatch();
             document.getElementById('start-btn').addEventListener("click", this.vidStart);
@@ -59,7 +63,10 @@ export default {
         },
         checkAns() {
             var ans = document.getElementById("ans");
-            if(ans.value == "give you up"){
+            var strAns = ans.textContent;
+            strAns.toLowerCase();
+            strAns.trim();
+            if(strAns.localeCompare("mario")){
                 ans.style.borderColor = "rgb(0, 95, 0)";
                 this.nextLvl();
             }
@@ -70,7 +77,8 @@ export default {
         vidStart() {
             document.getElementById("start-btn").remove();
             this.videoPressed = true;
-            document.getElementById("vid1").src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+            document.getElementById("vid1").src = "https://www.youtube.com/embed/Stk8EZ2abDA?autoplay=1"
+            document.getElementById("s-btn").addEventListener("click", this.checkAns)
         }
     },
     computed: {

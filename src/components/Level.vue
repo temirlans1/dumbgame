@@ -1,5 +1,6 @@
 <template>
     <div id="level-header" class="centered noselect">
+
         <div id="word-level">level</div>
         <div id="number-level">{{level}}</div>
         <div id="lvl-border"></div>

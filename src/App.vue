@@ -62,6 +62,24 @@ export default {
     }
   },
   methods: {
+    gotoMain() {
+      localStorage.setItem("level", 0);
+      localStorage.setItem("milsec", 0);
+      localStorage.setItem("seconds", 0);
+      localStorage.setItem("minutes", 0);
+      localStorage.setItem("hours", 0);
+      this.$refs.watch.setData();
+      this.level = localStorage.getItem("level")
+    },
+    startGame() {
+      localStorage.setItem("level", 1);
+      localStorage.setItem("milsec", 0);
+      localStorage.setItem("seconds", 0);
+      localStorage.setItem("minutes", 0);
+      localStorage.setItem("hours", 0);
+      this.$refs.watch.setData();
+      this.level = localStorage.getItem("level")
+    },
     increaseLevel() {
       this.level ++
       localStorage.setItem("level", this.level)
@@ -124,4 +142,5 @@ export default {
   /*text-align: center;*/
   height: 100%;
 }
+
 </style>

@@ -1,5 +1,6 @@
 <template>
-    <span class="time">{{ time }}</span>
+    <span class="time">{{ time }}
+    </span>
 </template>
 
 <script>
@@ -116,4 +117,5 @@ export default {
     color: #ffa500;
     padding: 5px 7px 5px 7px;
 }
+
 </style>
