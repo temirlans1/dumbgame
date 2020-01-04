@@ -42,16 +42,16 @@ export default {
             clearInterval(this.started);
         },
         saveData() {
-            localStorage.setItem("milsec", this.milliseconds);
-            localStorage.setItem("seconds", this.seconds);
-            localStorage.setItem("minutes", this.minutes);
-            localStorage.setItem("hours", this.hours);
+            sessionStorage.setItem("milsec", this.milliseconds);
+            sessionStorage.setItem("seconds", this.seconds);
+            sessionStorage.setItem("minutes", this.minutes);
+            sessionStorage.setItem("hours", this.hours);
         },
         setData() {
-            this.milliseconds = parseInt(localStorage.milsec);
-            this.seconds = parseInt(localStorage.seconds);
-            this.minutes = parseInt(localStorage.minutes);
-            this.hours = parseInt(localStorage.hours);
+            this.milliseconds = parseInt(sessionStorage.milsec);
+            this.seconds = parseInt(sessionStorage.seconds);
+            this.minutes = parseInt(sessionStorage.minutes);
+            this.hours = parseInt(sessionStorage.hours);
         },
         getTime() {
             var t='';

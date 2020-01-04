@@ -31,8 +31,8 @@ import Level8 from './components/Level8'
 import Level9 from './components/Level9'
 import Level10 from './components/Level10'
 
-if(!localStorage.level){
-  localStorage.setItem("level", 0)
+if(!sessionStorage.level){
+  sessionStorage.setItem("level", 0)
 }
 export default {
   name: 'app',
@@ -53,7 +53,7 @@ export default {
   },
   data() {
     return {
-      level: localStorage.getItem("level"),
+      level: sessionStorage.getItem("level"),
     }
   },
   mounted() {
@@ -63,26 +63,26 @@ export default {
   },
   methods: {
     gotoMain() {
-      localStorage.setItem("level", 0);
-      localStorage.setItem("milsec", 0);
-      localStorage.setItem("seconds", 0);
-      localStorage.setItem("minutes", 0);
-      localStorage.setItem("hours", 0);
+      sessionStorage.setItem("level", 0);
+      sessionStorage.setItem("milsec", 0);
+      sessionStorage.setItem("seconds", 0);
+      sessionStorage.setItem("minutes", 0);
+      sessionStorage.setItem("hours", 0);
       this.$refs.watch.setData();
-      this.level = localStorage.getItem("level")
+      this.level = sessionStorage.getItem("level")
     },
     startGame() {
-      localStorage.setItem("level", 1);
-      localStorage.setItem("milsec", 0);
-      localStorage.setItem("seconds", 0);
-      localStorage.setItem("minutes", 0);
-      localStorage.setItem("hours", 0);
+      sessionStorage.setItem("level", 1);
+      sessionStorage.setItem("milsec", 0);
+      sessionStorage.setItem("seconds", 0);
+      sessionStorage.setItem("minutes", 0);
+      sessionStorage.setItem("hours", 0);
       this.$refs.watch.setData();
-      this.level = localStorage.getItem("level")
+      this.level = sessionStorage.getItem("level")
     },
     increaseLevel() {
       this.level ++
-      localStorage.setItem("level", this.level)
+      sessionStorage.setItem("level", this.level)
       this.$refs.watch.saveData();
     },
     goto1() {
