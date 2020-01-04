@@ -6,7 +6,7 @@
         <div id="level-message">
             <div id="word-lvl5"
             style="animation-delay: 2s;"
-            @click="pressBtn">Do it</div>
+            @click="pressBtn">Press me</div>
         </div>
         <div id="lvl5-pass"
         @click="nextLvl"
@@ -30,6 +30,9 @@ export default {
           btnPressed: 0
         }
     },
+    mounted() {
+        setTimeout(this.startLvl, 3000);
+    },
     methods: {
         nextLvl() {
             document.getElementById("lvl-passed").classList.add("check-icon");
@@ -40,28 +43,34 @@ export default {
         },
         pressBtn() {
             this.btnPressed ++;
+            if(this.btnPressed == 1){
+              document.getElementById("word-lvl5").innerHTML="Press me";
+            }
             if(this.btnPressed == 5) {
-              document.getElementById("word-lvl5").innerHTML="Just do it";
+              document.getElementById("word-lvl5").innerHTML="Don't stop";
             }
             if(this.btnPressed == 10) {
-              document.getElementById("word-lvl5").innerHTML="Nothing is impossible";
+              document.getElementById("word-lvl5").innerHTML="Never give up";
             }
             if(this.btnPressed == 15) {
-              document.getElementById("word-lvl5").innerHTML="Don't let your dreams be dreams";
+              document.getElementById("word-lvl5").innerHTML="You're getting close";
             }
             if(this.btnPressed == 20) {
-              document.getElementById("word-lvl5").innerHTML="Yesterday you said tomorrow";
+              document.getElementById("word-lvl5").innerHTML="Just a little bit";
             }
             if(this.btnPressed == 25) {
-              document.getElementById("word-lvl5").innerHTML="So, just do it";
+              document.getElementById("word-lvl5").innerHTML="Last three times";
             }
             if(this.btnPressed == 28) {
-              document.getElementById("word-lvl5").innerHTML="But now, stop and wait";
+              document.getElementById("word-lvl5").innerHTML="Stop";
             }
             if(this.btnPressed == 29) {
-              document.getElementById("word-lvl5").innerHTML="Do it";
+              document.getElementById("word-lvl5").innerHTML="Ooh, you messed up, try again";
               this.btnPressed = 0;
             }
+        },
+        startLvl() {
+          this.$parent.startWatch();
         }
     },
     computed: {

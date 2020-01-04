@@ -66,7 +66,7 @@ export default {
             }
             if(this.seconds < 10)t+='0';
             t += this.seconds;
-            t += 's:';
+            t += 's.';
             t += this.milliseconds;
             t += 'ms ';
             return t;
@@ -83,7 +83,7 @@ export default {
             t+=":";
             if(this.seconds < 10)t+='0';
             t+=this.seconds;
-            t+=":";
+            t+=".";
             t+=this.milliseconds;
             return t;
         }

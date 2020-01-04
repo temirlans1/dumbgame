@@ -7,13 +7,12 @@
             <div id="lvl2-message" style="animation-delay: 2s;">
                 Sometimes you just
             </div>
-            <div id="lvl2-message" style="animation-delay: 3s;">
+            <div id="lvl2-message" style="animation-delay: 2.5s;">
                 need to dig deeper
             </div>
         </div>
         <div id="big-element"></div>
-        <div id="lvl3-pass"
-        @click="nextLvl">Hello</div>
+        <div id="lvl3-pass">I'm here</div>
         <div class="success-checkmark">
             <div id="lvl-passed">
                 <span class="icon-line line-tip"></span>
@@ -32,6 +31,9 @@ export default {
         return {
         }
     },
+    mounted() {
+        setTimeout(this.startLvl, 3500);
+    },
     methods: {
         nextLvl() {
             document.getElementById("lvl-passed").classList.add("check-icon");
@@ -40,6 +42,10 @@ export default {
             document.getElementById("lvl3-pass").remove();
             this.$parent.stopWatch();
             setTimeout(this.$parent.increaseLevel, 2000);
+        },
+        startLvl() {
+            this.$parent.startWatch();
+            document.getElementById("lvl3-pass").addEventListener("click", this.nextLvl);
         }
     },
     computed: {

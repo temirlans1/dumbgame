@@ -34,6 +34,9 @@ export default {
             hidden: true
         }
     },
+    mounted() {
+        setTimeout(this.$parent.startWatch, 3000);  
+    },
     methods: {
         nextLvl() {
             document.getElementById("lvl-passed").classList.add("check-icon");

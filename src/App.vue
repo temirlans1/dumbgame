@@ -57,19 +57,15 @@ export default {
     }
   },
   mounted() {
-    if(this.level > 0 && this.level < 11){
-      this.startWatch();
+    if(this.level > 0 ){
+      this.$refs.watch.setData();
     }
-    this.$refs.watch.setData();
   },
   methods: {
     increaseLevel() {
       this.level ++
       localStorage.setItem("level", this.level)
       this.$refs.watch.saveData();
-      if(this.level != 11){
-        this.startWatch()
-      }
     },
     goto1() {
       this.level = 1
@@ -102,7 +98,7 @@ export default {
       this.level = 10
     },
     startWatch() {
-      setTimeout(this.$refs.watch.start, 2000)
+      this.$refs.watch.start();
     },
     stopWatch() {
       this.$refs.watch.stop();

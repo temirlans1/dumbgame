@@ -8,32 +8,23 @@
                 Choose wisely
             </div>
             <div id="nl-1" class="nl-r1" 
-            style="animation-delay: 2s"
-            @click="this.$parent.goto1">1</div>
+            style="animation-delay: 2s">1</div>
             <div id="nl-2" class="nl-r1" 
-            style="animation-delay: 2.5s"
-            @click="this.$parent.goto2">2</div>
+            style="animation-delay: 2.2s">2</div>
             <div id="nl-3" class="nl-r1" 
-            style="animation-delay: 3s"
-            @click="this.$parent.goto3">3</div>
+            style="animation-delay: 2.4s">3</div>
             <div id="nl-4" class="nl-r1" 
-            style="animation-delay: 3.5s"
-            @click="this.$parent.goto4">4</div>
+            style="animation-delay: 2.6s">4</div>
             <div id="nl-5" class="nl-r1" 
-            style="animation-delay: 4s"
-            @click="this.$parent.goto5">5</div>
+            style="animation-delay: 2.8s">5</div>
             <div id="nl-6" class="nl-r2" 
-            style="animation-delay: 4.5s"
-            @click="this.$parent.goto6">6</div>
+            style="animation-delay: 3s">6</div>
             <div id="nl-7" class="nl-r2" 
-            style="animation-delay: 5s"
-            @click="this.$parent.goto7">7</div>
+            style="animation-delay: 3.2s">7</div>
             <div id="nl-8" class="nl-r2" 
-            style="animation-delay: 5.5s"
-            @click="this.$parent.goto8">8</div>
+            style="animation-delay: 3.4s">8</div>
             <div id="nl-9" class="nl-r2" 
-            style="animation-delay: 6s"
-            @click="nextLvl">9</div>
+            style="animation-delay: 3.6s">9</div>
             <div id="lvl2-message" style="animation-delay: 2s;">
                 One mistake and you are back in time
             </div>
@@ -57,12 +48,28 @@ export default {
         return {
         }
     },
+    mounted() {
+        setTimeout(this.startLvl, 4000);  
+    },
     methods: {
         nextLvl() {
             document.getElementById("lvl-passed").classList.add("check-icon");
             document.getElementById("level-message").remove();
             this.$parent.stopWatch();
             setTimeout(this.$parent.increaseLevel, 2000);
+        },
+        startLvl() {
+            this.$parent.startWatch();
+            document.getElementById("nl-1").addEventListener("click", this.$parent.goto1);
+            document.getElementById("nl-2").addEventListener("click", this.$parent.goto2);
+            document.getElementById("nl-3").addEventListener("click", this.$parent.goto3);
+            document.getElementById("nl-4").addEventListener("click", this.$parent.goto4);
+            document.getElementById("nl-5").addEventListener("click", this.$parent.goto5);
+            document.getElementById("nl-6").addEventListener("click", this.$parent.goto6);
+            document.getElementById("nl-7").addEventListener("click", this.$parent.goto7);
+            document.getElementById("nl-8").addEventListener("click", this.$parent.goto8);
+            document.getElementById("nl-9").addEventListener("click", this.nextLvl);
+            
         }
     },
     computed: {

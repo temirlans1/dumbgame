@@ -8,14 +8,18 @@
                 The answer is in video
             </div>
             <div id="lvl10-message" style="animation-delay: 2s;">
-                Please, watch till the end
+                <div id="start-btn" class="vid-btn">
+                    <div class="vid-play-btn"></div>
+                </div>
+                <iframe id="vid1" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope;" 
+                    allowfullscreen
+                    v-show="videoPressed"></iframe>
             </div>
-            <div id="lvl10-message" style="animation-delay: 2s;">
-                |Here will be video|
-            </div>
-            <input id="ans" type="text" placeholder="Answer...">
-            <div class="submit-btn"
-            @click="checkAns()">Submit</div>
+            <input id="ans" type="text" placeholder="Never gonna">
+            <div id="s-btn"
+            @click="checkAns()"></div>
         </div>
         
         <div class="success-checkmark">
@@ -34,9 +38,19 @@ export default {
     name: 'Level10',
     data() {
         return {
+            videoPressed: false
         }
     },
+    mounted() {
+        setTimeout(this.startLvl, 2000);
+    },
     methods: {
+        startLvl() {
+            this.$parent.startWatch();
+            document.getElementById('start-btn').addEventListener("click", this.vidStart);
+            document.getElementById("s-btn").classList.add("submit-btn");
+            document.getElementById("s-btn").innerHTML = "Submit";
+        },
         nextLvl() {
             document.getElementById("lvl-passed").classList.add("check-icon");
             document.getElementById("level-message").remove();
@@ -45,13 +59,18 @@ export default {
         },
         checkAns() {
             var ans = document.getElementById("ans");
-            if(ans.value == "create"){
+            if(ans.value == "give you up"){
                 ans.style.borderColor = "rgb(0, 95, 0)";
                 this.nextLvl();
             }
             else {
                 ans.style.borderColor = "rgb(177, 0, 0)";
             }
+        },
+        vidStart() {
+            document.getElementById("start-btn").remove();
+            this.videoPressed = true;
+            document.getElementById("vid1").src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
         }
     },
     computed: {
@@ -72,6 +91,20 @@ export default {
         margin-left: 30vw;
         margin-right: 30vw;
     }
+    iframe {
+        width: 80vw;
+        height: 30vh;
+    }
+    .vid-btn {
+        width: 80vw;
+        height: 30vh;
+    }
+    .vid-play-btn {
+            margin-top: 12vh;
+            width: 40px;
+            height: 40px;
+            border-width: 20px 0px 20px 40px;
+    }
 }
 @media screen and (min-width: 640px) {
     input {
@@ -81,6 +114,20 @@ export default {
         margin-left: 35vw;
         margin-right: 35vw;
     }
+    iframe {
+        width: 70vw;
+        height: 40vh;
+    }
+    .vid-btn {
+        width: 70vw;
+        height: 40vh;
+    }
+    .vid-play-btn {
+        margin-top: 15vh;
+        width: 70px;
+        height: 70px;
+        border-width: 35px 0px 35px 70px;
+    }
 }
 @media screen and (min-width: 1000px) {
     input {
@@ -89,6 +136,20 @@ export default {
     .submit-btn {
         margin-left: 35vw;
         margin-right: 35vw;
+    }
+    iframe {
+        width: 40vw;
+        height: 40vh;
+    }
+    .vid-btn {
+        width: 40vw;
+        height: 40vh;
+    }
+    .vid-play-btn {
+        margin-top: 15vh;
+        width: 70px;
+        height: 70px;
+        border-width: 35px 0px 35px 70px;
     }
 } 
 #lvl10-message {
@@ -126,5 +187,21 @@ input {
   100% {
       background-color:#ffa500;
   }
+}
+.vid-btn {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #ffa500;
+    border-radius: 10px;
+}
+
+.vid-play-btn {
+    display: inline-block;
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-style: solid;
+    box-sizing: border-box;
+    border-color: transparent transparent transparent #ffa500;
 }
 </style>

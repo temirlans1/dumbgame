@@ -12,8 +12,7 @@
             </div>
             <div class="play-btn"
             @click="nextLvl"></div>
-            <div id="word-play" style="animation-delay: 4s;"
-            @click="movePlay">play</div>
+            <div id="word-play" style="animation-delay: 4s;">play</div>
             <div id="lvl1-message" style="animation-delay: 4s; display:inline-block;">
                 button somewhere in the screen
             </div>
@@ -37,6 +36,9 @@ export default {
             hovered_play: false
         }
     },
+    mounted() {
+      setTimeout(this.letMove, 6000);
+    },
     methods: {
         movePlay() {
             var n = document.getElementById("word-play");
@@ -53,6 +55,10 @@ export default {
             document.getElementById("level-message").remove();
             this.$parent.stopWatch();
             setTimeout(this.$parent.increaseLevel, 2000);
+        },
+        letMove() {
+            document.getElementById("word-play").addEventListener("click", this.movePlay);
+            this.$parent.startWatch();
         }
     },
     computed: {

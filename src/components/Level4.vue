@@ -8,38 +8,30 @@
         v-if="deletedAmount==8">way out</div>
         <div id="level-message">
             <div>
-                <div id="no" class="lvl4-message"
-                @click="delNo">
+                <div id="no" class="lvl4-message">
                     no
                 </div>
-                <div id="words" class="lvl4-message"
-                @click="delWords">
+                <div id="words" class="lvl4-message">
                     words
                 </div>
-                <div id="needed" class="lvl4-message"
-                @click="delNeeded">
+                <div id="needed" class="lvl4-message">
                     needed
                 </div>
             </div>
             <div>
-                <div id="to" class="lvl4-message"
-                @click="delTo">
+                <div id="to" class="lvl4-message">
                     to
                 </div>
-                <div id="find" class="lvl4-message"
-                @click="delFind">
+                <div id="find" class="lvl4-message">
                     find
                 </div>
-                <div id="a" class="lvl4-message"
-                @click="delA">
+                <div id="a" class="lvl4-message">
                     a
                 </div>
-                <div id="way" class="lvl4-message"
-                @click="delWay">
+                <div id="way" class="lvl4-message">
                     way
                 </div>
-                <div id="out" class="lvl4-message"
-                @click="delOut">
+                <div id="out" class="lvl4-message">
                     out
                 </div>
             </div>
@@ -60,8 +52,12 @@ export default {
     name: 'Level4',
     data() {
         return {
-            deletedAmount: 0
+            deletedAmount: 0,
+            started: false
         }
+    },
+    mounted() {
+        setTimeout(this.startLvl, 3000);
     },
     methods: {
         nextLvl() {
@@ -102,6 +98,17 @@ export default {
         delOut() {
             document.getElementById("out").remove();
             this.deletedAmount ++;
+        },
+        startLvl() {
+            document.getElementById("no").addEventListener("click", this.delNo);
+            document.getElementById("words").addEventListener("click", this.delWords);
+            document.getElementById("needed").addEventListener("click", this.delNeeded);
+            document.getElementById("to").addEventListener("click", this.delTo);
+            document.getElementById("find").addEventListener("click", this.delFind);
+            document.getElementById("a").addEventListener("click", this.delA);
+            document.getElementById("way").addEventListener("click", this.delWay);
+            document.getElementById("out").addEventListener("click", this.delOut);
+            this.$parent.startWatch();
         }
     },
     computed: {
@@ -168,7 +175,7 @@ body {
 #lvl4-pass {
     cursor: pointer;
     position: relative; /* or absolute */
-    margin-top: 500px;
+    margin-top: 200px;
     color: #1b1b1b;
     margin-left: auto;
     margin-right: auto;

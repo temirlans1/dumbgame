@@ -2,17 +2,16 @@
     <div id="level-header" class="centered">
         <div id="word-level">level</div>
         <div id="number-level">{{level}}</div>
-        <div class="brk-btn"
-        @click="nextLvl">press me</div>
+        <div id="ans-btn" class="brk-btn"></div>
         <div id="lvl-border"></div>
         <div id="level-message" @click="selectText">
             <div id="lvl2-message" style="animation-delay: 2s;">
                 The answer will appear
             </div>
-            <div id="lvl2-message" style="animation-delay: 3s;">
+            <div id="lvl2-message" style="animation-delay: 2.5s;">
                 If you look through 
             </div>
-            <div id="lvl2-message" style="animation-delay: 4s;">
+            <div id="lvl2-message" style="animation-delay: 3s;">
                 the blue glasses
             </div>
             <div id="lvl2-message"
@@ -41,6 +40,10 @@ export default {
             it: 0
         }
     },
+    mounted() {
+        setTimeout(this.fcanShow, 15000);
+        setTimeout(this.showPress, 4000);
+    },
     methods: {
         nextLvl() {
             document.getElementById("lvl-passed").classList.add("check-icon");
@@ -52,19 +55,16 @@ export default {
             document.getElementById("level-message").style.userSelect = "all";
         },
         fcanShow() {
-            this.it ++;
-            if(this.it == 1){
-                setTimeout(this.fcanShow, 15000);
-            }
-            else {
-                this.canShow = true;
-            }
-            
+            this.canShow = true;
+        },
+        showPress() {
+            document.getElementById("ans-btn").addEventListener("click", this.nextLvl);
+            document.getElementById("ans-btn").innerHTML = "I'm here";
+            this.$parent.startWatch();
         }
     },
     computed: {
         level() {
-            this.fcanShow()
             return this.$parent.currentLevel
         }
     }

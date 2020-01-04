@@ -7,11 +7,13 @@
             <div id="lvl2-message" style="animation-delay: 2s;">
                 Lets check how lucky you are
             </div>
+            <div id="lvl2-message" style="animation-delay: 2s; margin-top: 10px">
+                Try to hit 99
+            </div>
             <div id="ld1" class="lucky-digit" 
             style="animation-delay: 2s;">0</div>
             <div id="roll" class="roll-btn" 
-            style="animation-delay: 2s"
-            @click="startRandom">Roll</div>
+            style="animation-delay: 2s">Roll</div>
             
         </div>
         
@@ -31,10 +33,32 @@ export default {
     name: 'Level9',
     data() {
         return {
-            rollPressed: false
+            rollPressed: false,
+            first: false,
+            second: false
         }
     },
+    mounted() {
+        setTimeout(this.startLvl, 3000);
+    },
     methods: {
+        startLvl() {
+            this.$parent.startWatch();
+            document.getElementById("roll").addEventListener("click", this.startRandom);
+            document.getElementById("number-level").addEventListener("click", this.firstPress);
+        },
+        firstPress() {
+            this.first = true;
+            if(this.first && this.second){
+                this.nextLvl();
+            }
+        },
+        secondPress() {
+            this.second = true;
+            if(this.first && this.second){
+                this.nextLvl();
+            }
+        },
         nextLvl() {
             document.getElementById("lvl-passed").classList.add("check-icon");
             document.getElementById("level-message").remove();
@@ -42,22 +66,15 @@ export default {
             setTimeout(this.$parent.increaseLevel, 2000);
         },
         startRandom() {
-            if(document.getElementById("roll").innerHTML == "Nice"){
-                this.nextLvl();
+            this.first = false;
+            this.second = false; 
+            var n = Math.floor(Math.random() * 9) + 1;
+            if(n == 9)document.getElementById("ld1").addEventListener("click", this.secondPress);
+            else document.getElementById("ld1").removeEventListener("click", this.secondPress);
+            if(!this.rollPressed) {
+                this.rollPressed = true;
+                this.reachNumber(0, n);
             }
-            else {
-                var n = Math.floor(Math.random() * 100) + 1;
-                if(n % 5 == 0){
-                    n = 69;
-                }
-                if(!this.rollPressed) {
-                    document.getElementById("ld1").classList.remove("ld-green");
-                    document.getElementById("ld1").classList.remove("ld-red");
-                    this.rollPressed = true;
-                    this.reachNumber(0, n);
-                }
-            }
-            
         },
         reachNumber(i, n) {
             var ld = document.getElementById("ld1");
@@ -66,13 +83,6 @@ export default {
                 setTimeout(this.reachNumber, 50, i+1, n);
             }
             else {
-                if(i == 69) {
-                    ld.classList.add("ld-green");
-                    document.getElementById("roll").innerHTML = "Nice";
-                }
-                else {
-                    ld.classList.add("ld-red");
-                }
                 this.rollPressed = false;
             }
         }
