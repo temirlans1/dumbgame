@@ -61,7 +61,7 @@ export default {
             var n = document.getElementById("name");
             n = n.value;
             axios
-            .post('http://127.0.0.1:5000/api/v1/resources/records/', {   
+            .post('https://dumbgame-api.herokuapp.com/api/v1/resources/records/', {   
                 headers: {'Access-Control-Allow-Origin': '*'},
                 params: {
                     name: n,
