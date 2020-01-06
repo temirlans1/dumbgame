@@ -1,5 +1,7 @@
 <template>
-    <div id="start-anim" class="centered noselect   ">
+    <div id="start-anim" class="centered noselect">
+        <div id="leaderboard" @click="this.$parent.showLeaders">
+        <i class="fas fa-trophy"></i></div>
         <div id="word-welcome">Welcome to my</div>
         <div id="letter-u">u</div>
         <div id="letter-m">m</div>
@@ -20,7 +22,8 @@ export default {
         return {
             hovered_d: false,
             hovered_b: false,
-            blocked: false
+            blocked: false,
+            records: []
         }
     },
     computed: {
@@ -41,11 +44,13 @@ export default {
                     document.getElementById("word-game").classList.add("w-g-appear");
                     document.getElementById("word-welcome").classList.add("w-w-appear");
                     document.getElementById("word-start").classList.add("w-s-move");
+                    document.getElementById("leaderboard").classList.add("leaderboard-appear");
                 }
                 else {
                     document.getElementById("word-game").classList.remove("w-g-appear");
                     document.getElementById("word-welcome").classList.remove("w-w-appear");
                     document.getElementById("word-start").classList.remove("w-s-move");
+                    document.getElementById("leaderboard").classList.remove("leaderboard-appear");
                 }
             }
         },
@@ -63,11 +68,13 @@ export default {
                     document.getElementById("word-game").classList.add("w-g-appear");
                     document.getElementById("word-welcome").classList.add("w-w-appear");      
                     document.getElementById("word-start").classList.add("w-s-move");
+                    document.getElementById("leaderboard").classList.add("leaderboard-appear");
                 }
                 else {
                     document.getElementById("word-game").classList.remove("w-g-appear");
                     document.getElementById("word-welcome").classList.remove("w-w-appear");
                     document.getElementById("word-start").classList.remove("w-s-move");
+                    document.getElementById("leaderboard").classList.remove("leaderboard-appear");
                 }
             }
         },
@@ -247,5 +254,21 @@ body {
 }
 #word-start:hover {
     background-color: #ffa500;
+}
+
+.fa-trophy {
+  position: absolute;
+  left: 95%;
+  transition:color 1s ease;
+}
+
+.leaderboard-appear {
+  color:#ffa500;
+  transition:all 1s ease;
+  -webkit-transition-delay:all 1s ease;
+  -moz-transition-delay:all 1s ease;
+  -ms-transition-delay:all 1s ease;
+  -o-transition-delay:all 1s ease;
+  cursor: pointer;
 }
 </style>

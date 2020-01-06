@@ -1,6 +1,6 @@
 <template>
   <div id="app" ref="main">
-    <Stopwatch ref="watch" v-show="currentLevel!=0 && currentLevel!=11"/>
+    <Stopwatch ref="watch" v-show="currentLevel>0 && currentLevel<11"/>
     <EndGame v-if="currentLevel==11"/>
     <StartPage v-if="currentLevel==0"/>
     <Level1 v-if="currentLevel==1"/>
@@ -13,6 +13,7 @@
     <Level8 v-if="currentLevel==8"/>
     <Level9 v-if="currentLevel==9"/>
     <Level10 v-if="currentLevel==10"/>
+    <Leaders v-if="currentLevel==-1"/>
   </div>
 </template>
 
@@ -30,6 +31,7 @@ import Level7 from './components/Level7'
 import Level8 from './components/Level8'
 import Level9 from './components/Level9'
 import Level10 from './components/Level10'
+import Leaders from './components/Leaders'
 
 if(!sessionStorage.level){
   sessionStorage.setItem("level", 0)
@@ -49,11 +51,12 @@ export default {
     Level7,
     Level8,
     Level9,
-    Level10
+    Level10,
+    Leaders
   },
   data() {
     return {
-      level: sessionStorage.getItem("level"),
+      level: sessionStorage.getItem("level")
     }
   },
   mounted() {
@@ -69,6 +72,7 @@ export default {
       sessionStorage.setItem("minutes", 0);
       sessionStorage.setItem("hours", 0);
       this.$refs.watch.setData();
+      this.$refs.watch.clearTime();
       this.level = sessionStorage.getItem("level")
     },
     startGame() {
@@ -123,6 +127,10 @@ export default {
     },
     finishTime() {
       return this.$refs.watch.getTime();
+    },
+    showLeaders() {
+      this.level = -1
+      sessionStorage.setItem("level", this.level)
     }
   },
   computed: {

@@ -53,6 +53,12 @@ export default {
             this.minutes = parseInt(sessionStorage.minutes);
             this.hours = parseInt(sessionStorage.hours);
         },
+        clearTime() {
+            this.milliseconds = 0
+            this.seconds = 0
+            this.minutes = 0
+            this.hours = 0
+        },
         getTime() {
             var t='';
             if(this.hours > 0){

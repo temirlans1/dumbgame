@@ -1,5 +1,7 @@
 <template>
     <div id="level-header" class="centered noselect">
+        <div @click="gotoMain">
+        <i class="fas fa-home"></i></div>
         <div id="endgame-message">
             Woah!
         </div>
@@ -12,9 +14,9 @@
         <div id="e-name-message">
             I guess, you are
         </div>
-        <input type="text" :placeholder='randomName'>
+        <input id="name" type="text" :placeholder="PlayerName">
         <div class="submit-name-btn"
-            @click="checkAns()">Yes, that's me</div>
+            @click="submitRecord">Yes, that's me</div>
         <div class="submit-name-btn"
             @click="tryAgain">I want to play again</div>
         <div class="success-checkmark">
@@ -29,11 +31,15 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     name: 'Endgame',
     data() {
         return {
-            nameShow: 0
+            nameShow: 0,
+            finishTime: this.$parent.finishTime(),
+            PlayerName: this.randomName
         }
     },
     methods: {
@@ -50,12 +56,30 @@ export default {
         },
         tryAgain() {
             this.$parent.startGame();
+        },
+        submitRecord() {
+            var n = document.getElementById("name");
+            n = n.value;
+            axios
+            .post('http://127.0.0.1:5000/api/v1/resources/records/', {   
+                headers: {'Access-Control-Allow-Origin': '*'},
+                params: {
+                    name: n,
+                    score: this.finishTime
+                }
+            })
+            .then(response => {
+                return response
+            })
+            .catch(error => {
+                return error
+            });
         }
     },
     computed: {
         time() {
             this.canShow();
-            return this.$parent.finishTime();
+            return this.finishTime
         },
         randomName() {
             var names = [

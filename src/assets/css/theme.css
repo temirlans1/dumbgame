@@ -270,6 +270,11 @@ body {
       left: 90%;
       margin-top: 0.5vh;
   }
+  .fa-trophy {
+    font-size: 30px;
+    left: 90%;
+    margin-top: 0.5vh;
+  }
 }
 @media screen and (min-width: 640px) {
   .fa-home {
@@ -277,11 +282,21 @@ body {
       left: 90%;
       margin-top: 0.5vh;
   }
+  .fa-trophy {
+    font-size: 45px;
+    left: 90%;
+    margin-top: 2vh;
+  }
 }
 @media screen and (min-width: 1000px) {
   .fa-home {
       font-size: 65px;
       right: 5%;
       margin-top: 1vh;
+  }
+  .fa-trophy {
+    font-size: 65px;
+    left: 90%;
+    margin-top: 0.5vh;
   }
 } 
